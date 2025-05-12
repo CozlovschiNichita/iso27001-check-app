@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.appendChild(wrap);
   });
 
-  // 2. обновляем индикатор «сколько отмечено»
+  // 2. обновляем индикатор «сколько отмечено »
   const updateProgress = () => {
     const checked = form.querySelectorAll("input:checked").length;
     bar.innerText = `Отмечено «Да»: ${checked} / ${questions.length}`;
