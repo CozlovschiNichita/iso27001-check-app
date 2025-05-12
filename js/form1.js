@@ -7,22 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const submit = document.getElementById("submitBtn");
   const bar    = document.getElementById("progressBar");
 
-  // 1. рендерим все чек‑боксы
-  questions.forEach((q, i) => {
-    const wrap   = document.createElement("div");
-    const input  = document.createElement("input");
-    const label  = document.createElement("label");
+questions.forEach((q, i) => {
+  const div = document.createElement("div");
+  div.classList.add("question-item"); 
 
-    input.type  = "checkbox";
-    input.id    = `q${i}`;
-    label.htmlFor = input.id;
-    label.innerText = q;
+  const label = document.createElement("label");
+  label.innerHTML = `${q} <input type="checkbox" id="q${i}" />`;
 
-    wrap.append(input, label);
-    form.appendChild(wrap);
-  });
+  div.appendChild(label);
+  form.appendChild(div);
+});
 
-  // 2. обновляем индикатор «сколько отмечено »
   const updateProgress = () => {
     const checked = form.querySelectorAll("input:checked").length;
     bar.innerText = `Отмечено «Да»: ${checked} / ${questions.length}`;
@@ -30,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("change", updateProgress);
   updateProgress();
 
-  // 3. при клике «Завершить» — сохраняем результат и переходим
   submit.addEventListener("click", (e) => {
     e.preventDefault();
     const count = form.querySelectorAll("input:checked").length;

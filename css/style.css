@@ -1,7 +1,21 @@
+/*общие стили*/
 * { box-sizing: border-box; font-family: Arial, sans-serif; }
 body { margin: 0; padding: 2rem; display: flex; flex-direction: column; align-items: center; }
 header h1 { margin-bottom: 3rem; }
 
+button {
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #222;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover { background: #f3f3f3; }
+
+/*первая страница*/
 #start-section {
   width: 100%;
   max-width: 450px;
@@ -17,18 +31,38 @@ input[type="text"] {
   border-radius: 6px;
 }
 
-button {
-  padding: 0.8rem 1rem;
-  font-size: 1.1rem;
-  border: 2px solid #222;
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
-  transition: background 0.2s;
+/*вторая страница*/
+#progressBar {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: -20px;
+	margin-bottom: 20px;
 }
 
-button:hover { background: #f3f3f3; }
+input[type="checkbox"] {
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+	flex-shrink: 0; /* чтобы не сжимался */
+}
 
+.question-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.question-item label {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/*третья страница*/
 progress {
   width: 100%;
   height: 1.2rem;
