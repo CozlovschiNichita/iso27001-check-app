@@ -11,6 +11,16 @@
     <h1 class="result">Результаты ISO 27001</h1>
   </header>
 
+	<!-- Список компаний -->
+<aside id="historyPanel" class="history-panel">
+  <h3>История компаний</h3>
+  <ul id="companyList"></ul>
+  <div class="history-controls">
+    <button id="resetViewBtn">Показать текущую</button>
+    <button id="clearHistoryBtn">🗑️ Удалить всё</button>
+  </div>
+</aside>
+
 <section id="resultSection">
   <h2>Компания:</strong> <span id="companyName">—</span></h2>
 
@@ -28,7 +38,7 @@
   <h2 id="resultText"></h2>
 </section>
 
-<h2>Рекомендации по улучшенxию</h2>
+<h2>Рекомендации по улучшению</h2>
 <div id="adviceGrid" class="advice-grid"></div>
 
 <!-- модальное окно -->

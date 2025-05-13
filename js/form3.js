@@ -1,94 +1,111 @@
-/*Расчёт результата и показ прогресса*/
-
+/* результат + рекомендации + история */
 import { sections } from "./questions.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ---------- 1. Считываем данные из localStorage ---------- */
+  /* === 1. читаем результат, историю, lastResult === */
   const { total = 0, count = 0 } = JSON.parse(localStorage.getItem("result") || "{}");
-  const percent                   = total ? ((count / total) * 100).toFixed(2) : "0.00";
-  const missedIds                 = JSON.parse(localStorage.getItem("missed") || "[]");
-  const company                   = localStorage.getItem("companyName") || "—";
+  const missedIds  = JSON.parse(localStorage.getItem("missed")      || "[]");
+  const company    = localStorage.getItem("companyName")            || "—";
+  const history    = JSON.parse(localStorage.getItem("history")     || "[]");
+  const lastResult = JSON.parse(localStorage.getItem("lastResult")  || "null");
 
-  /* ---------- 2. Выводим основные цифры ---------- */
-  document.getElementById("companyName").textContent = company;
-  document.getElementById("count").textContent       = count;
-  document.getElementById("total").textContent       = total;
+  /* === 2. DOM‑элементы === */
+  const companyEl = document.getElementById("companyName");
+  const countEl   = document.getElementById("count");
+  const totalEl   = document.getElementById("total");
+  const resultEl  = document.getElementById("resultText");
+  const pctEl     = document.getElementById("percentText");
+  const circle    = document.getElementById("circleFg");
+  const adviceGrid = document.getElementById("adviceGrid");
+  const listEl   = document.getElementById("companyList");
 
-  const resultTxt = percent >= 80
-    ? `Успех! Соответствие ${percent}%`
-    : `Неудача. Соответствие только ${percent}%`;
-  document.getElementById("resultText").textContent = resultTxt;
+  const circleLen = 2 * Math.PI * 54;
 
-  /* ---------- 3. Круговой индикатор ---------- */
-  const circle      = document.getElementById("circleFg");
-  const percentText = document.getElementById("percentText");
+  function showResult({ name, total, count, missed }) {
+    const pct = total ? ((count / total) * 100).toFixed(2) : "0.00";
+    companyEl.textContent = name;
+    countEl.textContent   = count;
+    totalEl.textContent   = total;
+    pctEl.textContent     = `${pct}%`;
+    circle.style.strokeDashoffset = circleLen * (1 - pct / 100);
+    resultEl.textContent = pct >= 80
+      ? `Успех! Соответствие ${pct}%`
+      : `Неудача. Соответствие только ${pct}%`;
+    renderAdvice(missed);
+  }
 
-  const fullLen = 2 * Math.PI * 54;                 // длина окружности (r = 54)
-  const offset  = fullLen * (1 - percent / 100);    // сколько «скрыть»
-
-  requestAnimationFrame(() => {
-    circle.style.strokeDashoffset = offset;
-    percentText.textContent = `${percent}%`;
-  });
-
-  /* ---------- 4. Рекомендации ---------- */
-const adviceGrid = document.getElementById("adviceGrid");
-if (missedIds.length === 0) {
-  adviceGrid.innerHTML = "<p>🎉 Все пункты выполнены. Рекомендаций нет!</p>";
-} else {
-  let global = 0; 	// сквозной индекс 0‑37
-
-  sections.forEach(sec => {
-		// собираем «локальные» пропуски этого раздела
-    const localMissed = [];
-
-    sec.questions.forEach((q, idx) => {
-      if (missedIds.includes(global)) {
-        localMissed.push({ num: idx + 1, text: q.text, advice: q.advice });
-      }
-      global++; 	// двигаем сквозной индекс
-    });
-
-    if (localMissed.length > 0) {
-      const column = document.createElement("div");
-      column.className = "advice-column";
-
-      const title = document.createElement("h4");
-      title.textContent = sec.title;
-      column.appendChild(title);
-
-      localMissed.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "advice-card";
-        card.innerHTML = `<span>Вопрос ${item.num}</span>`;
-        card.onclick = () => openModal(item.text, item.advice);
-        column.appendChild(card);
-      });
-
-      adviceGrid.appendChild(column);
+  /* === 3. рекомендации === */
+  function renderAdvice(missedArr) {
+    adviceGrid.innerHTML = "";
+    if (!missedArr || missedArr.length === 0) {
+      adviceGrid.innerHTML = "<p>🎉 Все пункты выполнены. Рекомендаций нет!</p>";
+      return;
     }
-  });
-}
+    let global = 0;
+    sections.forEach(sec => {
+      const loc = [];
+      sec.questions.forEach((q, idx) => {
+        if (missedArr.includes(global)) loc.push({ n: idx + 1, ...q });
+        global++;
+      });
+      if (loc.length) {
+        const col = document.createElement("div");
+        col.className = "advice-column";
+        col.innerHTML = `<h4>${sec.title}</h4>`;
+        loc.forEach(it => {
+          const card = document.createElement("div");
+          card.className = "advice-card";
+          card.innerHTML = `<span>Вопрос ${it.n}</span>`;
+          card.onclick = () => openModal(it.text, it.advice);
+          col.appendChild(card);
+        });
+        adviceGrid.appendChild(col);
+      }
+    });
+  }
 
-  /* ---------- 5. Модальное окно ---------- */
-  const modal       = document.getElementById("modal");
-  const modalTitle  = document.getElementById("modalTitle");
-  const modalText   = document.getElementById("modalText");
-  const modalClose  = document.getElementById("modalClose");
+  /* выводим текущий */
+  showResult({ name: company, total, count, missed: missedIds });
 
-  function openModal(title, txt) {
-    modalTitle.textContent = title;
-    modalText.textContent  = txt;
+  /* === 4. история компаний === */
+  function renderHistory() {
+    listEl.innerHTML = "";
+    if (history.length <= 1) {
+      listEl.innerHTML = "<li>Список пуст</li>";
+      return;
+    }
+    history.slice(0, -1).forEach(h => {
+      const li = document.createElement("li");
+      li.textContent = h.name;
+      li.onclick = () => showResult(h);
+      listEl.appendChild(li);
+    });
+  }
+  renderHistory();
+
+  /* === 5. кнопки истории === */
+  document.getElementById("clearHistoryBtn").onclick = () => {
+    localStorage.removeItem("history");
+    history.length = 0;
+    renderHistory();
+  };
+
+  document.getElementById("resetViewBtn").onclick = () => {
+    if (lastResult) showResult(lastResult);
+  };
+
+  /* === 6. модальное окно === */
+  const modal = document.getElementById("modal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalText  = document.getElementById("modalText");
+  function openModal(t, a) {
+    modalTitle.textContent = t;
+    modalText.textContent  = a;
     modal.classList.remove("hidden");
   }
-  function closeModal() {
-    modal.classList.add("hidden");
-  }
-  modalClose.addEventListener("click", closeModal);
-  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+  document.getElementById("modalClose").onclick = () => modal.classList.add("hidden");
+  modal.onclick = e => { if (e.target === modal) modal.classList.add("hidden"); };
 
-  /* ---------- 6. Кнопка «Пройти заново» ---------- */
-  document.getElementById("retryBtn").addEventListener("click", () => {
-    window.location.href = "index.html";
-  });
+  /* === 7. пройти заново === */
+  document.getElementById("retryBtn").onclick = () => location.href = "index.html";
 });

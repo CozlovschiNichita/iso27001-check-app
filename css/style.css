@@ -83,10 +83,55 @@ input[type="checkbox"] {
 .tab:hover { background: #f3f3f3; }
 
 /*третья страница*/
+/* история компаний */
+.history-panel {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 310px;
+  background: #f9fafe;
+  border: 1px solid #d0d7e2;
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.history-panel h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#companyList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0rem;
+  overflow-y: auto;
+}
+
+#companyList li {
+  padding: 4px 6px;
+	margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#companyList li:hover {
+  background: #e0ecff;
+
+}
+
+.history-controls button {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
 .result {
 	margin-bottom: 20px;
 }
 
+/* круг */
 .circle-wrapper {
   position: relative;
   width: 200px;             
