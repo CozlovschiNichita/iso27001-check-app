@@ -1,6 +1,5 @@
 /* Рендер чекбоксов и сбор ответов */
 
-// js/form1.js
 import { sections } from "./questions.js";
 
 const tabs      = document.getElementById("tabs");
@@ -11,7 +10,6 @@ const finishBtn = document.getElementById("finishBtn");
 let active = 0;                     // текущая вкладка
 const checkedSet = new Set();       // здесь помним всё «Да»
 
-/* ---------- helpers ---------- */
 const renderTabs = () => {
   tabs.innerHTML = "";
   sections.forEach((s, i) => {
@@ -31,7 +29,6 @@ const renderTabs = () => {
 const renderQuestions = () => {
   form.innerHTML = "";
 
-  // сколько вопросов во всех предыдущих секциях — нужно для глобального индекса
   const offset = sections
     .slice(0, active)
     .reduce((sum, s) => sum + s.questions.length, 0);
@@ -71,12 +68,10 @@ const updateProgress = () => {
   info.textContent = `Отмечено «Да»: ${checked} / ${total}`;
 };
 
-/* ---------- init ---------- */
 renderTabs();
 renderQuestions();
 updateProgress();
 
-/* ---------- кнопка Завершить ---------- */
 finishBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const total = sections.flatMap(s => s.questions).length;

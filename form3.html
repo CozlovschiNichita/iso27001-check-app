@@ -8,20 +8,29 @@
 </head>
 <body>
   <header>
-    <h1>Результаты ISO 27001</h1>
+    <h1 class="result">Результаты ISO 27001</h1>
   </header>
 
-  <section id="resultSection">
-    <p><strong>Компания:</strong> <span id="companyName">—</span></p>
-    <p><strong>Отмечено «Да»:</strong> <span id="count"></span> / <span id="total"></span></p>
+<section id="resultSection">
+  <h2>Компания:</strong> <span id="companyName">—</span></h2>
 
-		<progress id="progressBar" value="0"></progress>
+  <!-- Круговой прогресс -->
+  <div class="circle-wrapper">
+    <!-- back‑трека -->
+    <svg viewBox="0 0 120 120" class="circle">
+      <circle cx="60" cy="60" r="54" class="bg" />
+      <circle cx="60" cy="60" r="54" class="fg" id="circleFg" />
+    </svg>
+    <span id="percentText" class="percent-text">0%</span>
+  </div>
 
-    <h2 id="resultText"></h2>
-  </section>
+  <h2>Да: <span id="count"></span> / <span id="total"></span><h2>
+  <h2 id="resultText"></h2>
+</section>
 
   <button id="retryBtn">Пройти опрос заново</button>
 
   <script type="module" src="js/form3.js"></script>
 </body>
 </html>
+
