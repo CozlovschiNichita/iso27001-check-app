@@ -40,10 +40,8 @@ const renderQuestions = () => {
 
     // создаём label + checkbox
     const label = document.createElement("label");
-    label.innerHTML = `
-      ${q}
-      <input type="checkbox" id="q${globalIdx}">
-    `;
+    label.innerHTML = `${q.text}
+      <input type="checkbox" id="q${globalIdx}" data-id="${globalIdx}" />`;
 
     const input = label.querySelector("input");
     // если этот id был сохранён — ставим галочку
@@ -74,8 +72,16 @@ updateProgress();
 
 finishBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  const total = sections.flatMap(s => s.questions).length;
-  const count = checkedSet.size;
+
+  const total  = sections.flatMap(s => s.questions).length; // всего вопросов
+  const count  = checkedSet.size;      // сколько «Да»
+
+  // массив номеров вопросов, где галочка НЕ стоит
+  const missed = [...Array(total).keys()]          // [0,1,2, …]
+                 .filter(i => !checkedSet.has(`q${i}`)); // те, которых нет в Set
+
   localStorage.setItem("result", JSON.stringify({ total, count }));
+  localStorage.setItem("missed", JSON.stringify(missed));
+
   window.location.href = "form3.html";
 });

@@ -123,3 +123,65 @@ input[type="checkbox"] {
   font-size: 1.7rem;
   font-weight: 800;
 }
+
+/* Контейнер всех разделов — в одну строку */
+.advice-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: start;
+	margin-bottom: 25px;
+}
+
+/* Каждая колонка-раздел */
+.advice-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Заголовок раздела */
+.advice-column h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #0dc01c;
+  padding-left: 0.5rem;
+}
+
+/* Карточка рекомендации */
+.advice-card {
+  background: #fff;
+  border: 1px solid #222;
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.advice-card:hover {
+  background: #f3f3f3;
+  transform: scale(1.02);
+
+}
+
+/* модалка */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal.hidden { display: none; }
+.modal-content {
+  width: 90%; max-width: 480px; background: #fff;
+  padding: 1.5rem 2rem; border-radius: 8px; position: relative;
+}
+.close {
+  position: absolute; top: 8px; right: 12px;
+  font-size: 24px; cursor: pointer;
+}
+
