@@ -169,46 +169,75 @@ input[type="checkbox"] {
   font-weight: 800;
 }
 
-/* Контейнер всех разделов — в одну строку */
-.advice-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: start;
-	margin-bottom: 25px;
+#adviceSection {
+	text-align: center;
+}
+
+#resultText.success {
+  color: 	#0dc01c;
+  font-weight: bold;
+}
+
+#resultText.fail {
+  color: #c00d0d;
+  font-weight: bold;
+}
+
+/* === общий контейнер всех секций  ======= */
+.advice-column {
+	display: flex;        /* колонки в ряд */
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;  
 }
 
 /* Каждая колонка-раздел */
-.advice-column {
-  display: flex;
-  flex-direction: column;
+.advice-grid {
+   display: grid;
+  grid-template-columns: repeat(2, minmax(110px, 1fr));
+	gap: 1rem;
+  align-content: start;
+	justify-items: center;
 }
 
 /* Заголовок раздела */
 .advice-column h4 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  border-left: 4px solid #0dc01c;
-  padding-left: 0.5rem;
+	grid-column:1/-1;
+  margin:0 0 .75rem 0;
+  font-size:1.15rem;
+  border-left:4px solid #0dc01c;
+  padding-left:.5rem;
 }
-
-/* Карточка рекомендации */
+/* === карточка ========================= */
 .advice-card {
+  position: relative;
   background: #fff;
-  border: 1px solid #222;
   border-radius: 6px;
-  padding: 0.6rem 0.8rem;
-  font-size: 0.95rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  padding: 20px 18px;
+  margin-bottom: 10px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 600;
+	width: 100%;            
+	height: 7.5rem;
 }
 
 .advice-card:hover {
-  background: #f3f3f3;
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.25);
+  background-color: #fefefe;
+}
 
+/* отогнутый угол */
+.advice-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(200deg, #28c835ec 0%, #fff 100%);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
 }
 
 /* модалка */
@@ -229,4 +258,3 @@ input[type="checkbox"] {
   position: absolute; top: 8px; right: 12px;
   font-size: 24px; cursor: pointer;
 }
-
