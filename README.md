@@ -26,7 +26,7 @@
 
 ## Видео
 
-[![](IMG/preview.gif)](MP4/ISO_CyberSecurity.mp4)
+[Смотреть демо-видео](MP4/ISO_CyberSecurity.mp4)
 
 ## Применение
 
