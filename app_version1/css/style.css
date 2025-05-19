@@ -1,0 +1,260 @@
+/*общие стили*/
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+body { margin: 0; padding: 2rem; display: flex; flex-direction: column; align-items: center; }
+header h1 { margin-bottom: 3rem; }
+
+button {
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #222;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover { background: #f3f3f3; }
+
+/*первая страница*/
+#start-section {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input[type="text"] {
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/*вторая страница*/
+input[type="checkbox"] {
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+	flex-shrink: 0; /* чтобы не сжимался */
+}
+
+.question-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  padding: 0.4rem 0.6rem;      
+  border-radius: 6px;           
+  transition: background 0.15s;     
+}
+
+.question-item:hover { background: #f3f3f3;  }
+
+.question-item label {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  cursor: pointer;
+  display: flex; /* чтобы текст и чекбокс были на одной линии */
+	align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* вкладки */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.tabs .tab {
+  padding: 0.4rem 0.8rem;
+  border: 0.1px solid #222;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.tabs .tab.active {
+	border: 2px solid #222;
+}
+
+.tab:hover { background: #f3f3f3; }
+
+/*третья страница*/
+/* история компаний */
+.history-panel {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 310px;
+  background: #f9fafe;
+  border: 1px solid #d0d7e2;
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.history-panel h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#companyList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0rem;
+  overflow-y: auto;
+}
+
+#companyList li {
+  padding: 4px 6px;
+	margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#companyList li:hover {
+  background: #e0ecff;
+
+}
+
+.history-controls button {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.result {
+	margin-bottom: 20px;
+}
+
+/* круг */
+.circle-wrapper {
+  position: relative;
+  width: 200px;             
+  margin: 1rem auto;
+}
+
+.circle {
+  transform: rotate(-90deg);  /* начало в 12 часов, а не в 3 */
+  width: 100%;
+  height: auto;
+}
+
+.circle .bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 10;
+}
+
+.circle .fg {
+  fill: none;
+  stroke: #222;           
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 339.292;  /* = 2πr (r = 54) */
+  stroke-dashoffset: 339.292; /* полностью пустой круг */
+  transition: stroke-dashoffset 1s ease-out;
+}
+
+.percent-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+#adviceSection {
+	text-align: center;
+}
+
+#resultText.success {
+  color: 	#0dc01c;
+  font-weight: bold;
+}
+
+#resultText.fail {
+  color: #c00d0d;
+  font-weight: bold;
+}
+
+/* === общий контейнер всех секций  ======= */
+.advice-column {
+	display: flex;        /* колонки в ряд */
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;  
+}
+
+/* Каждая колонка-раздел */
+.advice-grid {
+   display: grid;
+  grid-template-columns: repeat(2, minmax(110px, 1fr));
+	gap: 1rem;
+  align-content: start;
+	justify-items: center;
+}
+
+/* Заголовок раздела */
+.advice-column h4 {
+	grid-column:1/-1;
+  margin:0 0 .75rem 0;
+  font-size:1.15rem;
+  border-left:4px solid #0dc01c;
+  padding-left:.5rem;
+}
+/* === карточка ========================= */
+.advice-card {
+  position: relative;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  padding: 20px 18px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 600;
+	width: 100%;            
+	height: 7.5rem;
+}
+
+.advice-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.25);
+  background-color: #fefefe;
+}
+
+/* отогнутый угол */
+.advice-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(200deg, #28c835ec 0%, #fff 100%);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+/* модалка */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal.hidden { display: none; }
+.modal-content {
+  width: 90%; max-width: 480px; background: #fff;
+  padding: 1.5rem 2rem; border-radius: 8px; position: relative;
+}
+.close {
+  position: absolute; top: 8px; right: 12px;
+  font-size: 24px; cursor: pointer;
+}
