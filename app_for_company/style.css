@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.company-title {
+  cursor: help;
+  border-bottom: 1px dotted #000;
+}
+
+.category-link {
+  cursor: pointer;
+}
+
+.category-link:hover {
+  text-decoration: underline;
+}
+
+.content-area {
+  min-height: 400px;
+}
