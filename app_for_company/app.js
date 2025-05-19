@@ -275,20 +275,7 @@ $(document).ready(function () {
   });
 });
 
-  $(function () {
-    $('#openCompanyModal').on('click', function () {
-      $('#companyModal').fadeIn();
-    });
-    $('#closeCompanyModal').on('click', function () {
-      $('#companyModal').fadeOut();
-    });
-    $(document).on('click', function (e) {
-      if (e.target.id === 'companyModal') {
-        $('#companyModal').fadeOut();
-      }
-    });
-  });
-
+  
 
 
 

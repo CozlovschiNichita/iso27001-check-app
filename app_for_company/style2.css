@@ -1,0 +1,40 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+.title-text {
+  font-family: 'Roboto', sans-serif; /* или другой, например: 'Playfair Display', 'Roboto Slab', etc. */
+  font-weight: 600;
+  font-size: 28px;
+  color: #222;
+}
+
+
+.jumbotron {
+  background-color: #eaeef3;
+  padding: 2rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.main-logo {
+  height: 160px;
+}
+
+.section-title {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+}
+
+.footer {
+  background-color: #eaeef3;
+  text-align: center;
+  padding: 1rem;
+  font-size: 14px;
+  margin-top: 3rem;
+}
