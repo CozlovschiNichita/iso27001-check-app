@@ -1,10 +1,15 @@
 /*общие стили*/
 * { box-sizing: border-box; font-family: Arial, sans-serif; }
-body { margin: 0; padding: 2rem; display: flex; flex-direction: column; align-items: center; }
-header h1 { margin-bottom: 3rem; }
+body{
+  margin:0;
+  padding-top:var(--navbar-h);   /* единственный отступ */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
 /* ---- главная ---- */
-:root { --accent:#1da9ff; }
+:root { --accent:#1da9ff; --navbar-h: 65px; }
 
 .home { min-height:100vh; }
 .home__header   { text-align:center; padding:40px 20px; }
@@ -14,14 +19,14 @@ header h1 { margin-bottom: 3rem; }
 .btn.secondary  { background:#eaeaea; }
 /* только правка футера */
 .home__footer{
-  margin-top:auto;                 /* как было */
+  margin-top:auto;                 
   text-align:center;
   padding:18px;
   background:#f5f5f5;
   font-size:.9rem;
   width:100vw;                     /* ширина окна браузера  */
   position:relative;
-  left:52%;                        /* смещаем вправо на половину ширины … */
+  left:50%;                        /* смещаем вправо на половину ширины … */
   transform:translateX(-50%);      /* … и возвращаем обратно */
 }
 
@@ -31,6 +36,36 @@ header h1 { margin-bottom: 3rem; }
   align-items: center;
   gap: 12px;        
 }
+
+/* ───── НАВБАР — полная ширина, фиксирован сверху ───── */
+.navbar{
+  position: fixed;           /* всегда сверху */
+  top: 0; left: 0; width: 100%;
+  height: 64px;
+  background: #1d1d1d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;             /* перекрывает контент */
+}
+
+.navbar__logo img{ height: 40px; }
+
+.navbar__links{ display: flex; gap: 32px; margin: 0; list-style: none; }
+
+.navbar__links .nav-link{
+  color: #fff; text-decoration: none; font-size: 1rem;
+  padding: 8px 0; transition: opacity .2s;
+}
+
+.navbar__links .nav-link:hover{ opacity: .8; }
+
+.nav-link.active{ border-bottom: 2px solid var(--accent); }
+
+
+/* ── HERO + ОСТАЛЬНОЕ остаётся без изменений ── */
+
 
 .logo-main      { width:140px;  height:auto; }
 .logo-dashboard { width:300px;  height:auto; }
@@ -75,7 +110,7 @@ header h1 { margin-bottom: 3rem; }
 button {
   padding: 0.8rem 1rem;
   font-size: 1.1rem;
-  border: 2px solid #222;
+  border: 2px solid #1da9ff;
   border-radius: 6px;
   background: #fff;
   cursor: pointer;
@@ -146,7 +181,7 @@ input[type="checkbox"] {
 }
 
 .tabs .tab.active {
-	border: 2px solid #222;
+	border: 2px solid #1da9ff;
 }
 
 .tab:hover { background: #f3f3f3; }
@@ -164,6 +199,7 @@ input[type="checkbox"] {
   padding: 1rem;
   font-size: 0.9rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding-top:var(--navbar-h);
 }
 
 .history-panel h3 {
@@ -266,7 +302,7 @@ input[type="checkbox"] {
 
 /* Каждая колонка-раздел */
 .advice-grid {
-   display: grid;
+  display: grid;
   grid-template-columns: repeat(2, minmax(110px, 1fr));
 	gap: 1rem;
   align-content: start;

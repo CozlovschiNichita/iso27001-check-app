@@ -22,6 +22,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const circleLen = 2 * Math.PI * 54;
 
+  /* === 0. вспомогалка для TXT === */
+function buildTxtReport({ total, count, missed }) {
+  const pct   = total ? Math.round((count / total) * 100) : 0;
+  let   text  = 'Отчёт по оценке соответствия ISO/IEC 27001\n\n';
+  text += `Всего вопросов: ${total}\n`;
+  text += `Да: ${count}  |  Нет / пусто: ${total - count}\n`;
+  text += `Процент соответствия: ${pct}%\n\n`;
+
+  /* если есть список missed в формате "A5-3" — выводим их */
+  if (missed.length && typeof missed[0] === 'string') {
+    text += 'Несоответствующие пункты:\n';
+    missed.forEach(code => text += `  • ${code}\n`);
+  }
+  return text;
+}
+
+/* === 1. обработчик кнопки === */
+document.getElementById('downloadTxtBtn').onclick = () => {
+  const result = JSON.parse(localStorage.getItem('lastResult') ||
+                            localStorage.getItem('result')     || '{}');
+
+  const report = buildTxtReport(result);
+  const blob   = new Blob([report], { type:'text/plain' });
+  const link   = document.createElement('a');
+  link.href    = URL.createObjectURL(blob);
+  link.download = 'ISO27001_report.txt';
+  link.click();
+};
+
   /* ---------- показать результат ---------- */
   function showResult({ total, count, missed }) {
     const pct = total ? ((count / total) * 100).toFixed(2) : "0.00";

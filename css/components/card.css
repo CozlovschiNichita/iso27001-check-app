@@ -1,0 +1,62 @@
+/* inline-advice внутри таблицы */
+.inline-advice{
+  display:inline-block;
+  font-weight:600;
+  padding:.9rem 1rem;
+  border-radius:var(--radius);
+  background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+  cursor:pointer;
+  transition:transform .2s, box-shadow .2s;
+  position:relative;
+}
+.inline-advice:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 12px rgba(0,0,0,.2);
+}
+.inline-advice::after{
+  content:"";
+  position:absolute;top:0;right:0;width:20px;height:20px;
+  background:linear-gradient(200deg,var(--clr-accent) 0%,#fff 100%);
+  clip-path:polygon(100% 0,0 0,100% 100%);
+}
+
+/* карточки на странице результатов */
+.advice-column{ display:flex; gap:1.5rem; flex-wrap:wrap; }
+
+.advice-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(110px,1fr));
+  gap:1rem;
+  align-content:start;
+  justify-items:center;
+}
+.advice-column h4{
+  grid-column:1/-1;
+  margin-bottom:.75rem;
+  font-size:1.15rem;
+  border-left:4px solid var(--clr-accent);
+  padding-left:.5rem;
+}
+
+.advice-card{
+  position:relative;
+  width:100%; height:7.5rem;
+  background:#fff;
+  border-radius:var(--radius);
+  padding:1.25rem 1.1rem;
+  font-weight:600;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+  transition:.3s;
+  cursor:pointer;
+}
+.advice-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 12px rgba(0,0,0,.25);
+}
+.advice-card::after{          /* уголок */
+  content:"";
+  position:absolute;top:0;right:0;width:24px;height:24px;
+  background:linear-gradient(200deg,var(--clr-accent) 0%,#fff 100%);
+  clip-path:polygon(100% 0,0 0,100% 100%);
+}
