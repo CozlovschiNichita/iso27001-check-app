@@ -1,0 +1,34 @@
+/* ─────────── Переменные и базовые правила ─────────── */
+:root{
+  --clr-accent:   #1da9ff;
+  --clr-bg:       #f5f5f5;
+  --clr-dark:     #1d1d1d;
+  --radius:       6px;
+  --navbar-h:     64px;
+  --fs-base:      16px;
+}
+
+*,
+*::before,
+*::after{ box-sizing:border-box; }
+
+html{ font-size:var(--fs-base); scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  color:#333;
+  background:var(--clr-bg);
+  padding-top:var(--navbar-h);           /* контент под навбаром */
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+h1,h2,h3,h4{ margin:0 0 .75em; line-height:1.2; font-weight:600; }
+p{ margin:0 0 1em; line-height:1.55; }
+ul{ margin:0; padding:0; list-style:none; }
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; }
+
+button{ font:inherit; cursor:pointer; }

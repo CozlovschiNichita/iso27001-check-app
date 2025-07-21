@@ -1,0 +1,16 @@
+/* ─────────── Утилиты сетки и отступы ─────────── */
+.container{
+  width:100%;
+  max-width:1080px;
+  margin-inline:auto;
+  padding-inline:1rem;
+}
+
+.flex{ display:flex; }
+.flex-center{ justify-content:center; align-items:center; }
+
+.mt-l { margin-top:2rem; }
+.mt-xl{ margin-top:3rem; }
+.mb-l { margin-bottom:2rem; }
+.mb-xl{ margin-bottom:3rem; }
+.text-center{ text-align:center; }

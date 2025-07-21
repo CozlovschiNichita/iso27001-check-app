@@ -36,6 +36,67 @@ body{
   align-items: center;
   gap: 12px;        
 }
+h1 {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/*----Параграфы -----*/
+.about {
+  background-color: #f9fbfd;
+  border: 1px solid #d9e1e7;
+  border-radius: 8px;
+  padding: 2rem 2.5rem;
+  margin: 2rem auto;
+  max-width: 960px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.03);
+  color: #333;
+}
+
+.about h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+}
+
+.about h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+    color: #2c3e50;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+}
+
+.about h5 {
+  font-size: 1.15rem;
+  margin-top: 1.5rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.about p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.about ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about ul li {
+  margin-bottom: 0.5rem;
+  list-style-type: disc;
+}
+
+.about strong {
+  color: #212529;
+  font-weight: 600;
+}
+
 
 /* ───── НАВБАР — полная ширина, фиксирован сверху ───── */
 .navbar{
@@ -49,6 +110,14 @@ body{
   padding: 0 24px;
   z-index: 1000;             /* перекрывает контент */
 }
+
+.navbar,
+.navbar__links .nav-link {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
 
 .navbar__logo img{ height: 40px; }
 

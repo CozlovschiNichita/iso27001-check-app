@@ -36,5 +36,5 @@
 
 ## Автор
 
-Разработано как учебный проект по информационной безопасности.  
-[GitHub профайл](https://github.com/CozlovschiNichita)
+Разработано как учебный проект по информационной безопасности.   
+[мой GitHub профайл](https://github.com/CozlovschiNichita) и [GitHub профайл коллеги](https://github.com/oladia-code)
