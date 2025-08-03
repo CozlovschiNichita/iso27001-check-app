@@ -17,7 +17,7 @@
 - HTML5 / CSS3 / JavaScript (Vanilla JS)
 - Без внешних фреймворков
 
-## Демо
+## Демо-видео
 
 [![Смотреть демо-видео](./MP4/preview.jpg)](./MP4/ISO_CyberSecurity.mp4)
 
