@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: app/Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    depends_on:
+      - css-server
+      - static-server
+
+  css-server:
+    build:
+      context: .
+      dockerfile: css-server/Dockerfile
+    ports:
+      - "8081:80"
+    volumes:
+      - ./css:/usr/share/nginx/html/css:ro
+
+  static-server:
+    build:
+      context: .
+      dockerfile: static-server/Dockerfile
+    ports:
+      - "8082:80"
+    volumes:
+      - ./images:/usr/share/nginx/html/images:ro
+      - ./MP4:/usr/share/nginx/html/MP4:ro
+      - ./favicon.ico:/usr/share/nginx/html/favicon.ico:ro
